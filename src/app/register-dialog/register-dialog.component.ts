@@ -296,14 +296,14 @@ export class RegisterDialogComponent {
             console.log('Image loaded successfully');
             console.log('Width:', img.width, 'Height:', img.height);
             if (img.width !== 310 || img.height !== 325) {
-              resolve({ invalidDimensions: true }); // Resolve with error if dimensions are not as required
+              resolve({ invalidDimensions: true }); 
             } else {
-              resolve(null); // Resolve with null if dimensions are valid
+              resolve(null); 
             }
           };
           img.onerror = (error) => {
             console.error('Error loading image:', error);
-            resolve({ invalidImage: true }); // Resolve with error if there's an issue loading the image
+            resolve({ invalidImage: true }); 
           };
           img.src = e.target.result;
         };
