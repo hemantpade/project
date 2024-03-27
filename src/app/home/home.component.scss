@@ -1,0 +1,358 @@
+// ngb-carousel .wrapper {
+//     position: relative;
+//     height: 0;
+//     padding-top: 55%; /* Keep ratio for 900x500 images */
+//   }
+
+//   ngb-carousel .wrapper>img {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//   }
+//above cash
+/* carousel.component.css */
+.carousel-section {
+    position: relative;
+    color: #fff;
+    padding: 0;
+  }
+  
+  .carousel-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  //below mesh
+  .carousel-container {
+    position: relative;
+    //  margin: auto;
+    text-align: center;
+    // width: 700px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px #dce1e1;
+  }
+  
+  .carousel-container img {
+    display: none;
+    // border-radius: 15px;
+  }
+  
+  .carousel-container img.image-active {
+    display: block;
+    width: 100%;
+    height: 600px;
+  }
+  .error-msg {
+    color: red;
+    font-size: 0.9em;
+  }
+  .carousel-dot-container {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    //padding: 25px;
+    margin-bottom: auto;
+  }
+  
+  .dot {
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    margin: 0 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    transition: opacity 0.6s ease;
+    opacity: 0.5;
+  }
+  
+  .active,
+  .dot:hover {
+    opacity: 1;
+  }
+  
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {
+      opacity: 0.4;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .contentCorousel {
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 10;
+  }
+  
+  button {
+    padding: 6px 20px !important;
+  }
+  
+  input[type="location"].form-control {
+    width: 35vw !important;
+  }
+  
+  .text {
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+    /* Adjust text color as needed */
+    z-index: 10;
+    /* Ensure text is above images */
+    font-style: italic;
+    font-weight: normal;
+    font-size: 40px;
+  }
+  
+  .aboutbtn {
+    background-color: #04d9ff !important;
+    /* Override Bootstrap's default styles */
+    color: white !important;
+    /* Text color on hover */
+  }
+  
+  /* Button with sky blue border on hover */
+  // .aboutbtn:hover {
+  //     background-color: #04d9ff !important; /* Override Bootstrap's default styles */
+  //     color: white !important; /* Text color on hover */
+  // }
+  /* registration.component.css */
+  
+  form {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    //  border: 1px solid #ccc;
+    border-radius: 5px;
+    //  box-shadow: 0 8px 16px #dce1e1
+  }
+  
+  form div {
+    margin-bottom: 10px;
+  }
+  
+  .popup form {
+    box-shadow: 0 8px 6px #dce1e1;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  //input[type="email"]
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    background-color: skyblue;
+    color: #fff;
+  }
+  
+  button[type="submit"]:hover,
+  button[type="button"]:hover {
+    opacity: 0.8;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  /* registration.component.css */
+  
+  /* Placeholder styling */
+  input[type="text"],
+  input[type="number"]
+  input[type="email"],
+  textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus {
+    border-color: skyblue !important;
+    /* Change border color on focus */
+  }
+  
+  /* Hide labels */
+  
+  .popupOverlay {
+    background-color: grey;
+    opacity: 0.6;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .popup {
+    background-color: white;
+    z-index: 999;
+    max-width: 630px;
+    margin: auto;
+    position: absolute;
+    top: 50px;
+    left: 371px;
+  }
+  .upload-label {
+    display: inline-block;
+    //padding: 8px 12px;
+   /// background-color: #007bff;
+    color: skyblue;
+   // border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .upload-label:hover {
+    background-color: #0056b3;
+  }
+  
+  //navbar styling
+  .navbar-container {
+    height: 15vh;
+    background-color: grey;
+}
+
+.contents{
+    font-size: 14px;
+    color: white;
+    position: relative;
+    cursor: pointer;
+}
+.navbar-container .row{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+   
+}
+.navlist{
+    flex-direction: end;
+}
+.heading-logo{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+   // opacity: 0.3;
+}
+
+.contents::before {
+    content: '';
+    position: absolute;
+    top: -4px; /* Adjust the position of the line */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Height of the line */
+    background-color: transparent; /* Initial color of the line */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.contents.active::before {
+    background-color: skyblue; /* Color of the line when active */
+}
+
+//about css
+
+
+
+/* Button with sky blue border on hover */
+.aboutbtn:hover {
+  background-color: #04d9ff !important; /* Override Bootstrap's default styles */
+  color: white !important; /* Text color on hover */
+}
+.active1{
+  height: 3px;
+  width: 70px;
+  background-color: #04d9ff;
+  border-radius: 5px;
+}
+
+
+
+//job css
+
+.job {
+  background-color: #00000d;
+  color: white;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* To center horizontally */
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.subscribe-form label {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.subscribe-form input[type="email"].form-control {
+  background-color: #00000d;
+  color: white!important;
+  border-color: skyblue;
+  width: 45%px;
+}
+
+.subscribe-form .form-control:focus {
+  border-color: skyblue;
+  box-shadow: none;
+}
+
+.subscribe-form .input-group-text {
+  background-color: #00000d;
+  border-color: skyblue;
+}
+
+.bi-envelope-fill {
+  color: white;
+}
+.subscribe-form input[type="email"].form-control::placeholder {
+  color: white; // Change the placeholder text color to white
+}
+
+//footer
+button{
+  background-color: lightblue !important;
+  border: 1px solid skyblue !important;
+}

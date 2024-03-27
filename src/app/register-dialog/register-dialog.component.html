@@ -1,0 +1,223 @@
+<mat-dialog-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="registrationForm">
+    <div class="row">
+      <div class="col-4 d-flex flex-column">
+        <div>
+          <!-- Show the image if it's uploaded -->
+          <img *ngIf="img1" [src]="img1" alt="Uploaded Image" style="height: 139px;
+          width: 135px;" />
+          <!-- Show a placeholder thumbnail if no image is uploaded -->
+          <!-- <img *ngIf="!img1" src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1710861356~exp=1710861956~hmac=2b17ed323dc412170f8d56084d00cc26df95a47e80b05b6135b1c68802c7d634" alt="Placeholder Image" style="height: 139px;
+          width: 135px;" /> -->
+          <!-- <img *ngIf=" this.ProfileData.profilePhoto" src="img1" alt="Placeholder Image" style="height: 139px;
+          width: 135px;" /> -->
+        </div>
+        <div>
+          <!-- Move the input file element below the preview image -->
+          <label for="profilePhoto" class="upload-label">upload your photo</label>
+          <!-- Hidden file input -->
+          <input
+            type="file"
+            id="profilePhoto"
+            (change)="handleUpload($event)"
+            accept="image/*"
+            style="display: none;"
+          />
+          <div *ngIf="f.firstName.touched && f.firstName.errors" class="error-msg">
+          <span *ngIf="f.firstName.errors.required">This field is required</span>
+          <span *ngIf="registrationForm.controls.profilePhoto.errors?.invalidDimensions" class="error-msg">
+            Image dimensions should be 310x325 pixels
+          </span>
+        </div>
+        </div>
+        <!-- <div *ngIf="profilePhoto.errors.required">
+          this field is required
+        </div> -->
+      </div>
+      
+      <div class="col-8">
+        <div class="row mb-0">
+          <div class="col-6">
+            <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-control"
+                placeholder="First name"
+            />
+            <span *ngIf="f.firstName.touched && f.firstName.errors" class="error-msg">
+              <span *ngIf="f.firstName.errors.required">This field is required</span>
+              <span *ngIf="f.firstName.errors.noNumbers">Numbers are not allowed</span>
+              <span *ngIf="f.firstName.errors.maxlength">Max 22 Chars Allowed</span>
+              <!-- <span *ngIf="f.firstName.errors.pattern">jhhgjhvjhvjvjhgvyvjhv</span> -->
+          </span>
+        </div>
+          <div class="col-6">
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              formControlName="lastName"
+              placeholder="Last name"
+            />
+            <span *ngIf="f.lastName.touched && f.lastName.errors" class="error-msg">
+              <span *ngIf="f.lastName.required">this field is required</span>
+              <span *ngIf="f.lastName.errors.noNumbers">Numbers are not allowed</span>
+            </span>
+          </div>
+        </div>
+        <div>
+          <input
+            type="email"
+            class="form-control"
+            id="emailId"
+            formControlName="emailId"
+            placeholder="Enter your mail Id"
+            
+          />
+          <span *ngIf="f.emailId.touched && f.emailId.errors" class="error-msg">
+            <span *ngIf="f.emailId.errors.required">Email is required</span>
+            <span *ngIf="f.emailId.errors.email">Enter a valid email address</span>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <!-- <label for="mobileNumber">Mobile Number:</label> -->
+          <input
+            type="text"
+            class="form-control"
+            id="mobileNumber"
+            formControlName="mobileNumber"
+            placeholder="Enter your mobile number"
+            pattern="[0-9]{10}" 
+          />
+          <span *ngIf="f.mobileNumber.touched && f.mobileNumber.errors" class="error-msg">
+            <span *ngIf="f.mobileNumber.errors.required">Mobile number is required</span>
+            <span *ngIf="f.mobileNumber.errors.pattern">Invalid mobile number</span>
+          </span>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="age" style="color: grey; display: block"
+              >Age:{{ age.value }}</label
+            >
+            <span *ngIf="f.age.touched && f.age.errors" style="color: red;">
+              <span *ngIf="f.age.touched">this field is required</span>
+            </span>
+          </div>
+
+          <div class="col-md-10">
+            <input
+              type="range"
+              class="form-range"
+              min="20"
+              max="60"
+              step="1"
+              id="age"
+              formControlName="age"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <!-- <input
+            type="text"
+            id="country"
+            formControlName="country"
+            placeholder="Country"
+            required
+            /> -->
+            <select formControlName="country" id="country"  placeholder="Country" class="form-control" required >
+              <option value="">Select Country</option>
+              <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+            </select>
+            <span *ngIf="f.country.touched && f.country.errors?.required" class="error-msg">
+              Country is required
+            </span>
+          </div>
+          <div class="form-group">
+            <select formControlName="state" id="state" class="form-control" [disabled]="!registrationForm.get('country').value">
+              <option value="">Select State</option>
+              <option *ngFor="let state of getStatesForCountry(registrationForm.get('country').value)" [value]="state">{{ state }}</option>
+            </select>
+            <span *ngIf="f.state.touched && f.state.errors?.required" class="error-msg">
+              State is required
+            </span>
+          </div>
+          <div class="form-group">
+            <select formControlName="addressType" id="addressType" class="form-control" >
+              <option value="">Select Address Type</option>
+              <option value="home">Home</option>
+              <option value="company">Company</option>
+            </select>
+            <span *ngIf="f.addressType.touched && f.addressType.errors" class="error-msg">
+              <span *ngIf="f.addressType.errors.required">Address type is required</span>
+            </span>
+          </div>
+          <!-- Conditional rendering for Home address -->
+          <div *ngIf="registrationForm.get('addressType').value === 'home'">
+            <div class="form-group">
+              <!-- <label for="homeAddress1">Address 1:</label> -->
+              <input type="text" class="form-control" id="homeAddress1" formControlName="homeAddress1" placeholder="Enter Address 1">
+            </div>
+            <div class="form-group">
+              <!-- <label for="homeAddress2">Address 2:</label> -->
+              <input type="text" class="form-control" id="homeAddress2" formControlName="homeAddress2" placeholder="Enter Address 2">
+            </div>
+          </div>
+        
+          <!-- Conditional rendering for Company address -->
+          <div *ngIf="registrationForm.get('addressType').value === 'company'">
+            <div class="form-group">
+              <!-- <label for="companyAddress1">Company Address 1:</label> -->
+              <input type="text" class="form-control" id="companyAddress1" formControlName="companyAddress1" placeholder="Enter Company Address 1">
+            </div>
+            <div class="form-group">
+              <!-- <label for="companyAddress2">Company Address 2:</label> -->
+              <input type="text" class="form-control" id="companyAddress2" formControlName="companyAddress2" placeholder="Enter Company Address 2">
+            </div>
+          </div>        
+          <div>
+            <mat-form-field class="example-chip-list">
+          <!-- <input type="text" formControlName="tags" placeholder="Tags" /> -->
+          <mat-chip-grid #chipGrid aria-label="Enter tags">
+            <ng-container *ngFor="let fruit of fruits; trackBy: trackByFn">
+                <mat-chip-row
+                  (removed)="remove(fruit)"
+                  [editable]="true"
+                  (edited)="edit(fruit, $event)"
+                  [aria-description]="'press enter to edit ' + fruit.name">
+                  {{fruit.name}}
+                  <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+            </ng-container>
+            <input placeholder="Enter tags"
+                   [matChipInputFor]="chipGrid"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)"
+                   formControlName="tags"/>
+          </mat-chip-grid>
+        </mat-form-field>
+          <span *ngIf="f.tags.touched && f.tags.errors" class="error-msg">
+            <span *ngIf="f.tags.touched">this field is required</span>
+          </span>
+        
+        </div>
+        <div>
+          <input type="checkbox" id="subscribe" formControlName="subscribe" />
+          <label for="subscribe">Subscribe to Newsletter</label>
+        </div>
+        <div class="">
+          <button mat-button type="button" class="m-3 " style="color: white;background-color: lightgrey;" (click)="onCancel()">Cancel</button>
+          <button mat-button type="submit" class="aboutbtn">{{data?'Update':'Submit'}}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<p>
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim exercitationem molestiae dignissimos maxime vitae quaerat omnis cumque repellendus cum natus odio, veritatis velit eum consectetur amet ratione sed fugiat aspernatur harum quidem fuga a reprehenderit dolorem? Voluptas officiis sint libero mollitia modi aliquid repudiandae saepe. Maxime commodi ut, explicabo quia velit quidem corrupti animi, iure autem, nobis distinctio voluptatum earum corporis! Deleniti fugiat, officia autem cum possimus accusamus dolores doloribus molestiae consequuntur dicta eaque veritatis dolore eum id!
+</p>

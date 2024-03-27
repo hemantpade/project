@@ -1,0 +1,32 @@
+<div class="navbar-container"> 
+    <div class="row">
+        <div class="col-6 d-flex align-items-center" style="height: 100%;">
+         <span class="heading-logo">Demo App</span>
+        </div>
+        <div  class="col-6  d-flex align-items-center  justify-content-end">
+          <span class="contents m-2"  (click)="setFlag(i)" *ngFor="let item of navbarList; let i=index" [ngClass]="{'active': item.isActive}">
+            <a>{{item.content}}</a> 
+          </span>
+        </div>
+    </div>
+    </div>
+<div class="container-fluid" >
+    <div class="row container">
+        <div class="col-12 " style="padding-left: 194px;"><h2>Profile</h2></div>
+        <div class="col-2"></div>
+        <div class="col-4  justify-content-around pb-2">        
+            <div class="pb-3"><img src="{{data1?.profilePhoto}}" alt=""></div>
+           <div> <button class="edit-button" (click)="openEditForm(data1)">Edit Photo</button>
+            <button class="edit-button">Edit profile</button>
+          </div>
+        </div>
+        <div class="col-6 pb-md-5">
+            <div class="pb-5">
+                <p>I'm {{data1?.firstName}} {{data1?.lastName}} and I'm above {{data1?.age}} years and you can send your emails to {{data1?.emailId}}.</p>
+                <p>I live in the state of {{data1?.state}}. I like to play {{data1?.tags}}. And please send me newsletters.</p>
+                <p>Please reach out to me on my phone number {{data1?.mobileNumber}}.</p>
+            </div>
+            <button class="agree-button">I Agree</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+.example-chip-list {
+    width: 100%;
+  }
+/* Placeholder styling */
+input[type="text"],
+input[type="number"]
+input[type="email"],
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.mat-dialog-content {
+    overflow-x: hidden !important;
+  }
+  .error-msg{
+   color: red;
+  }
+//   .col-8 {
+//     overflow-y: auto; /* or overflow-y: hidden; */
+// }
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: skyblue !important;
+  /* Change border color on focus */
+}
+
+/* Hide labels */
+
+.popupOverlay {
+  background-color: grey;
+  opacity: 0.6;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.popup {
+  background-color: white;
+  z-index: 999;
+  max-width: 630px;
+  margin: auto;
+  position: absolute;
+  top: 50px;
+  left: 371px;
+}
+.upload-label {
+  display: inline-block;
+  //padding: 8px 12px;
+ /// background-color: #007bff;
+  color: skyblue;
+ // border-radius: 4px;
+  cursor: pointer;
+}
+
+.upload-label:hover {
+  background-color: #0056b3;
+}
+.aboutbtn {
+    background-color: #04d9ff !important;
+    /* Override Bootstrap's default styles */
+    color: white !important;
+    /* Text color on hover */
+  }
+  
