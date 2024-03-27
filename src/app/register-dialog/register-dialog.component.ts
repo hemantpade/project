@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import {
   MatDialog,
@@ -110,6 +110,7 @@ export class RegisterDialogComponent {
    *
    */
   constructor(
+    public dialogRef: MatDialogRef<RegisterDialogComponent>,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private _registration: RegisterationService,
@@ -316,12 +317,12 @@ export class RegisterDialogComponent {
     const country = this.countries.find((c) => c.name === countryName);
     return country ? country.states : [];
   }
+
   onCancel() {
     // Reset the form
     this.registrationForm.reset();
     this.resisterFlag = false;
+    this.dialogRef.close();
   }
 }
-function value(error: any): void {
-  throw new Error('Function not implemented.');
-}
+

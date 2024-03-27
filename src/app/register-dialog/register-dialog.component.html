@@ -101,11 +101,7 @@
             <label for="age" style="color: grey; display: block"
               >Age:{{ age.value }}</label
             >
-            <span *ngIf="f.age.touched && f.age.errors" style="color: red;">
-              <span *ngIf="f.age.touched">this field is required</span>
-            </span>
           </div>
-
           <div class="col-md-10">
             <input
               type="range"
@@ -117,6 +113,9 @@
               formControlName="age"
               placeholder="Age"
             />
+          </div>
+          <div  *ngIf="f.age.touched && f.age.errors" class="error-msg col-12">
+            <p *ngIf="f.age.touched">this field is required</p>
           </div>
         </div>
         <div class="form-group">
@@ -218,6 +217,3 @@
     </div>
   </form>
 </mat-dialog-content>
-<p>
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim exercitationem molestiae dignissimos maxime vitae quaerat omnis cumque repellendus cum natus odio, veritatis velit eum consectetur amet ratione sed fugiat aspernatur harum quidem fuga a reprehenderit dolorem? Voluptas officiis sint libero mollitia modi aliquid repudiandae saepe. Maxime commodi ut, explicabo quia velit quidem corrupti animi, iure autem, nobis distinctio voluptatum earum corporis! Deleniti fugiat, officia autem cum possimus accusamus dolores doloribus molestiae consequuntur dicta eaque veritatis dolore eum id!
-</p>

@@ -82,6 +82,10 @@ export class ProfileComponent {
   }
   ngOnInit(): void {
     
+    this.getEmployeeForProfile();
+    this.getEmployeeForProfile();
+  }
+  getEmployeeForProfile(){
     this._register.getEmployee().subscribe({
       next: (res: any) => { // Change the parameter type to match the expected object type
         console.log("data1", res);
@@ -91,8 +95,6 @@ export class ProfileComponent {
       },
       error: console.log
     });
-    
-    
   }
 
   openEditForm(data1:any){
@@ -101,6 +103,8 @@ export class ProfileComponent {
       data:this.data1,
       height: '80vh',
       width: '60vw',
+      
     }); 
+    this.getEmployeeForProfile();
   }
 }
