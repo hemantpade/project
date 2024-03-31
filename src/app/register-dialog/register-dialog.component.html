@@ -30,16 +30,15 @@
             style="display: none"
           />
           <div
-            *ngIf="f.firstName.touched && f.firstName.errors"
+            *ngIf="f.profilePhoto.touched && f.profilePhoto.errors"
             class="error-msg"
           >
-            <span *ngIf="f.firstName.errors.required"
+            <span *ngIf="f.profilePhoto.errors.required"
               >This field is required</span
             >
             <span
               *ngIf="
-                registrationForm.controls.profilePhoto.errors?.invalidDimensions
-              "
+                registrationForm.get('profilePhoto').errors?.invalidDimensions"
               class="error-msg"
             >
               Image dimensions should be 310x325 pixels
@@ -89,7 +88,7 @@
               *ngIf="f.lastName.touched && f.lastName.errors"
               class="error-msg"
             >
-              <span *ngIf="f.lastName.required">this field is required</span>
+              <span *ngIf="f.lastName.errors.required">this field is required</span>
               <span *ngIf="f.lastName.errors.noNumbers"
                 >Numbers are not allowed</span
               >

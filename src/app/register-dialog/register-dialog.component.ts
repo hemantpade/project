@@ -119,7 +119,7 @@ export class RegisterDialogComponent {
   ngOnInit(): void {
     
     this.registrationForm = this.formBuilder.group({
-      profilePhoto: ['', [Validators.required]], // Initialize profile photo control
+      profilePhoto: ['', [Validators.required,this.imageDimensionsValidator]], // Initialize profile photo control
       firstName: [
         '',
         [
@@ -272,47 +272,44 @@ export class RegisterDialogComponent {
        console.log('this.registrationForm.patchValue({profilePhoto:event.target.result})',this.registrationForm.patchValue({profilePhoto:event.target.result}));
       this.img1=event.target.result;
       console.log('this.img2',this.img2);
-      
-      this.img1=event.target.result;
+      //this.img1=event.target.result;
      }
   }
 
   }
-  imageDimensionsValidator() {
-    return (
-      control: AbstractControl
-    ): Promise<{ [key: string]: any } | null> => {
-      return new Promise((resolve) => {
-        const file = control.value;
-        if (!(file instanceof Blob)) {
-          resolve(null); // Resolve with null if the file is not a Blob
+  imageDimensionsValidator(control: AbstractControl): { [key: string]: any } | null {
+    const file = control.value;
+  
+    if (!(file instanceof Blob)) {
+      return null; // Return null if the file is not a Blob
+    }
+  
+    const reader = new FileReader();
+  
+    reader.onload = (e: any) => {
+      const img = new Image();
+  
+      img.onload = () => {
+        if (img.width > 310 || img.height > 325) {
+          control.setErrors({ invalidDimensions: true }); // Set error on the control
+        } else {
+          control.setErrors(null); // Clear any existing errors
         }
-
-        const reader = new FileReader();
-
-        reader.onload = (e: any) => {
-          const img = new Image();
-          img.onload = () => {
-            console.log('Image loaded successfully');
-            console.log('Width:', img.width, 'Height:', img.height);
-            if (img.width !== 310 || img.height !== 325) {
-              resolve({ invalidDimensions: true }); 
-            } else {
-              resolve(null); 
-            }
-          };
-          img.onerror = (error) => {
-            console.error('Error loading image:', error);
-            resolve({ invalidImage: true }); 
-          };
-          img.src = e.target.result;
-        };
-
-        reader.readAsDataURL(file); // Read file as data URL
-      });
+      };
+  
+      img.onerror = (error) => {
+        console.error('Error loading image:', error);
+        control.setErrors({ invalidImage: true }); // Set error on the control
+      };
+  
+      img.src = e.target.result;
     };
+  
+    reader.readAsDataURL(file);
+  
+    return null; // Return null synchronously
   }
-
+  
   getStatesForCountry(countryName: string): string[] {
     const country = this.countries.find((c) => c.name === countryName);
     return country ? country.states : [];

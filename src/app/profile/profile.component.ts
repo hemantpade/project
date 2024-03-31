@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Dialog } from '@angular/cdk/dialog';
 export interface DialogData {
   id: string;
- // profilePhoto: File;
+  //profilePhoto: File;
   firstName: string;
   lastName: string;
   emailId: string;
@@ -83,7 +83,7 @@ export class ProfileComponent {
   ngOnInit(): void {
     
     this.getEmployeeForProfile();
-    this.getEmployeeForProfile();
+   
   }
   getEmployeeForProfile(){
     this._register.getEmployee().subscribe({
